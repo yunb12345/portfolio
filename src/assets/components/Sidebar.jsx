@@ -1,12 +1,12 @@
 export default function Sidebar({ setSection, section }) {
   const links = [
-    { id: "about", label: "ABOUT" },
-    { id: "experience", label: "EXPERIENCE" },
-    { id: "projects", label: "PROJECTS" },
+    { id: "about", label: "About" },
+    { id: "experience", label: "Experience" },
+    { id: "projects", label: "Projects" },
   ];
 
   return (
-    <aside className="w-64 p-8 flex flex-col justify-between">
+    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[40%] lg:flex-col lg:justify-between lg:py-24">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-white">Brittany Chiang</h1>
@@ -17,20 +17,46 @@ export default function Sidebar({ setSection, section }) {
       </div>
 
       {/* Nav */}
-      <nav className="mt-10 space-y-4">
-        {links.map((link) => (
-          <button
-            key={link.id}
-            onClick={() => setSection(link.id)}
-            className={`block text-left w-full border-l pl-4 ${
-              section === link.id
-                ? "border-white text-white"
-                : "border-gray-600 text-gray-400 hover:text-white"
-            }`}
-          >
-            {link.label}
-          </button>
-        ))}
+      <nav className="mt-10">
+        <ul className="space-y-4">
+          {links.map((link) => (
+            <li key={link.id}>
+              <a
+                href={`#${link.id}`}
+                onClick={(e) => {
+                  e.preventDefault(); // evita el salto brusco
+                  setSection(link.id);
+
+                  // scroll suave hasta la sección
+                  document.getElementById(link.id)?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+                className="group flex items-center py-3"
+              >
+                {/* Línea a la izquierda */}
+                <span
+                  className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                    section === link.id
+                      ? "w-16 bg-slate-200"
+                      : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                  }`}
+                ></span>
+
+                {/* Texto */}
+                <span
+                  className={`nav-text text-xs font-bold uppercase tracking-widest transition-colors ${
+                    section === link.id
+                      ? "text-slate-200"
+                      : "text-slate-500 group-hover:text-slate-200"
+                  }`}
+                >
+                  {link.label}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
 
       {/* Footer icons */}
@@ -39,6 +65,6 @@ export default function Sidebar({ setSection, section }) {
         <a href="#"><i className="fab fa-linkedin"></i></a>
         <a href="#"><i className="fab fa-instagram"></i></a>
       </div>
-    </aside>
+    </header>
   );
 }
