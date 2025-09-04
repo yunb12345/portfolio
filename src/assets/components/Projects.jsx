@@ -1,3 +1,5 @@
+import { FiExternalLink } from "react-icons/fi";
+
 const projects = [
   {
     img: "/img/Splitify.png",
@@ -5,6 +7,7 @@ const projects = [
     description:
       "Frontend y Backend de una aplicación web para dividir gastos en grupos de amigos...",
     tags: ["React","SQL","Node","Express","Sequelize","TailwindCSS"],
+    link:"https://github.com/yunb12345/APITPO.git",
   },
   {
     img: "/img/facturalo.png",
@@ -12,6 +15,7 @@ const projects = [
     description:
       "Un chatbot impulsado por IA que ayuda a los usuarios a generar facturas electrónicas de manera rápida y sencilla con lenguaje natural...",
     tags: ["Python","Whatsapp API","OpenAI","Flask"],
+    link:"",
   },
   {
     img: "/img/CookingBook.png",
@@ -19,6 +23,7 @@ const projects = [
     description:
       "Una aplicacion movil para crear recetas, buscar recetas y clasificarlas",
     tags: ["Android","React Native","MongoDB","Node","Express"],
+    link:"https://github.com/loveonick/devappfront.git",
   },
 ];
 export default function Projects() {
@@ -51,6 +56,17 @@ export default function Projects() {
                     </li>
                   ))}
                 </ul>
+                {exp.link && (
+                  <a
+                    href={exp.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative mt-2 inline-flex items-center text-sm font-medium text-slate-300 hover:text-teal-300 focus-visible:text-teal-300"
+                  >
+                    <span>Github</span>
+                    <FiExternalLink className="ml-2 text-base" />
+                  </a>
+                )}
               </div>
               <img src={exp.img} alt={exp.name} width={200} height={48} className="aspect-video object-cover rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1" />
             </div>

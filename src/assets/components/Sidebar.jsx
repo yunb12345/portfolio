@@ -1,6 +1,5 @@
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
-import { AiOutlineArrowDown } from "react-icons/ai";
 import { AiFillGithub } from "react-icons/ai";
 
 export default function Sidebar({ setSection, section }) {
