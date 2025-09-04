@@ -19,25 +19,26 @@ export default function App() {
 
   return (
     <div>
-      {/* Fondo dinámico */}
       <div
         id="gradient-bg"
-        className="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"
+        className="pointer-events-none fixed inset-0 z-30 transition duration-300"
         style={{
           background: `radial-gradient(600px at ${coords.x}px ${coords.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
         }}
       ></div>
-
-      {/* Contenido */}
       <div className="mx-auto min-h-screen text-gray-300 max-w-screen-xl px-6 py-12 md:px-12 md:py-16 lg:py-0">
         <div className="lg:flex lg:justify-between lg:gap-4">
-          {/* Sidebar */}
           <Sidebar setSection={setSection} section={section} />
-          {/* Main Content */}
-          <main className="pt-24 lg:w-[52%] lg:py-24">
-            {section === "about" && <About />}
-            {section === "experience" && <Experience />}
-            {section === "projects" && <Projects />}
+          <main className="pt-24 lg:w-[52%] lg:py-24 space-y-36">
+            <section id="about">
+              <About />
+            </section>
+            <section id="experience">
+              <Experience />
+            </section>
+            <section id="projects">
+              <Projects />
+            </section>
           </main>
         </div>
       </div>
