@@ -26,10 +26,11 @@ export default function Sidebar({ setSection, section }) {
               <a
                 href={`#${link.id}`}
                 onClick={(e) => {
-                  e.preventDefault(); // evita el salto brusco
+                  e.preventDefault();
                   setSection(link.id);
                   document.getElementById(link.id)?.scrollIntoView({
                     behavior: "smooth",
+                    block: "center", // <-- agrega esto
                   });
                 }}
                 className="group flex items-center py-3"
