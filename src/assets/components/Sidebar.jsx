@@ -4,9 +4,9 @@ import { AiFillGithub } from "react-icons/ai";
 
 export default function Sidebar({ setSection, section }) {
   const links = [
-    { id: "about", label: "About" },
-    { id: "experience", label: "Experience" },
-    { id: "projects", label: "Projects" },
+    { id: "about", label: "Acerca de" },
+    { id: "experience", label: "Experiencia" },
+    { id: "projects", label: "Proyectos" },
   ];
 
   return (
