@@ -1,6 +1,44 @@
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { AiFillGithub } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
+const smoothScrollTo = (targetId, duration = 500) => {
+  const target = document.getElementById(targetId);
+  if (!target) return;
+
+  const targetRect = target.getBoundingClientRect();
+
+  const targetCenter =
+    targetRect.top +
+    window.pageYOffset -
+    (window.innerHeight / 2 - targetRect.height / 2);
+
+  const startPosition = window.pageYOffset;
+  const distance = targetCenter - startPosition;
+
+  let startTime = null;
+
+  const easeInOut = (t) =>
+    t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+  const animate = (currentTime) => {
+    if (!startTime) startTime = currentTime;
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+
+    window.scrollTo(
+      0,
+      startPosition + distance * easeInOut(progress)
+    );
+
+    if (progress < 1) requestAnimationFrame(animate);
+  };
+
+  requestAnimationFrame(animate);
+};
+
+
 
 export default function Sidebar({ setSection, section }) {
   const links = [
@@ -18,32 +56,28 @@ export default function Sidebar({ setSection, section }) {
           Busco desarrollar experiencia para desarrollar software que impacte a las personas.
         </p>
       </div>
-      <nav className="mt-10">
+      <nav className="mt-3">
         <ul className="space-y-4">
           {links.map((link) => (
             <li key={link.id}>
-              <a
-                href={`#${link.id}`}
+              <Link
+                to={`/#${link.id}`}
                 onClick={(e) => {
-                  e.preventDefault();
+                  e.preventDefault(); // evita salto brusco
                   setSection(link.id);
-                  document.getElementById(link.id)?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center", // <-- agrega esto
-                  });
+                  smoothScrollTo(link.id, 500);
                 }}
                 className="group flex items-center py-3"
               >
-
                 <span
-                  className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                  className={`nav-indicator mr-4 h-px transition-all ${
                     section === link.id
                       ? "w-16 bg-slate-200"
                       : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
                   }`}
-                ></span>
+                />
                 <span
-                  className={`nav-text text-xs font-bold uppercase tracking-widest transition-colors ${
+                  className={`nav-text text-xs font-bold uppercase tracking-widest ${
                     section === link.id
                       ? "text-slate-200"
                       : "text-slate-500 group-hover:text-slate-200"
@@ -51,7 +85,7 @@ export default function Sidebar({ setSection, section }) {
                 >
                   {link.label}
                 </span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

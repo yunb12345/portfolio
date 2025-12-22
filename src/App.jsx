@@ -16,6 +16,43 @@ export default function App() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
+  // Detectar sección visible (Observer)
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll("section[id]"));
+
+    const onScroll = () => {
+      // ✅ SI ESTÁ ARRIBA DEL TODO → ABOUT
+      if (window.scrollY <= 10) {
+        setSection("about");
+        return;
+      }
+
+      const centerY = window.innerHeight / 2;
+
+      let closestSection = null;
+      let closestDistance = Infinity;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const sectionCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(sectionCenter - centerY);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestSection = section.id;
+        }
+      });
+
+      if (closestSection) {
+        setSection(closestSection);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // inicial
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <div>
@@ -29,17 +66,17 @@ export default function App() {
       <div className="mx-auto min-h-screen text-gray-300 max-w-screen-xl px-6 py-12 md:px-12 md:py-16 lg:py-0">
         <div className="lg:flex lg:justify-between lg:gap-4">
           <Sidebar setSection={setSection} section={section} />
-          <main className="pt-24 lg:w-[52%] lg:py-24 space-y-36">
-            <section id="about">
-              <About />
-            </section>
-            <section id="experience">
-              <Experience />
-            </section>
-            <section id="projects">
-              <Projects />
-            </section>
-          </main>
+            <main className="pt-24 lg:w-[52%] lg:py-24">
+              <section id="about">
+                <About />
+              </section>
+              <section id="experience">
+                <Experience />
+              </section>
+              <section id="projects">
+                <Projects />
+              </section>
+            </main>
         </div>
       </div>
     </div>
