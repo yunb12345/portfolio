@@ -68,7 +68,14 @@ export default function Projects() {
                   </a>
                 )}
               </div>
-              <img src={exp.img} alt={exp.name} width={200} height={48} className="aspect-video object-cover rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1" />
+                <div className="relative overflow-hidden rounded-md border border-slate-200/10 aspect-[16/10] sm:col-span-2 sm:order-1 sm:translate-y-1">
+                  <img
+                    src={exp.img}
+                    alt={exp.name}
+                    className="absolute inset-0 h-full w-full object-cover brightness-95 contrast-105 saturate-110 transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
+                </div>
             </div>
           </li>
         ))}
