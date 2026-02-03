@@ -21,7 +21,6 @@ export default function App() {
     const sections = Array.from(document.querySelectorAll("section[id]"));
 
     const onScroll = () => {
-      // ✅ SI ESTÁ ARRIBA DEL TODO → ABOUT
       if (window.scrollY <= 10) {
         setSection("about");
         return;

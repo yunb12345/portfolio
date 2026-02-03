@@ -1,13 +1,22 @@
 import { FiExternalLink } from "react-icons/fi";
 
 const projects = [
-  {
+/*   {
     img: "/img/Splitify.png",
     name: "Splitify",
     description:
       "Frontend y Backend de una aplicación web para dividir gastos en grupos de amigos...",
     tags: ["React","SQL","Node","Express","Sequelize","TailwindCSS"],
     link:"https://github.com/yunb12345/APITPO.git",
+  }, */
+  {
+    img: "/img/chatify.png",
+    name: "Chatify",
+    description:
+      "Aplicacion web de chat en tiempo real con sistema de autenticación y capaz de subir imagenes",
+    tags: ["React","Node","WebSocket","MongoDB","Tailwind"],
+    github:"https://github.com/yunb12345/chatifyapp.git",
+    link:"https://profound-spontaneity-production-e505.up.railway.app/",
   },
   {
     img: "/img/facturalo.png",
@@ -15,6 +24,7 @@ const projects = [
     description:
       "Un chatbot impulsado por IA que ayuda a los usuarios a generar facturas electrónicas de manera rápida y sencilla con lenguaje natural...",
     tags: ["Python","Whatsapp API","OpenAI","Flask"],
+    github:"https://github.com/facundocarrizo99/AIChatbot.git",
     link:"",
   },
   {
@@ -23,7 +33,8 @@ const projects = [
     description:
       "Una aplicacion movil para crear recetas, buscar recetas y clasificarlas",
     tags: ["Android","React Native","MongoDB","Node","Express"],
-    link:"https://github.com/loveonick/devappfront.git",
+    github:"https://github.com/loveonick/devappfront.git",
+    link:"",
   },
 ];
 export default function Projects() {
@@ -35,6 +46,10 @@ export default function Projects() {
       <ol className="group/list">
         {projects.map((exp, idx) => (
           <li key={idx} className="relative mb-12">
+            <a
+              href={exp.github}
+              target="_blank"
+            >
             <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
               <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
               <div className="z-10 sm:order-2 sm:col-span-6">
@@ -63,7 +78,7 @@ export default function Projects() {
                     rel="noopener noreferrer"
                     className="relative mt-2 inline-flex items-center text-sm font-medium text-slate-300 hover:text-teal-300 focus-visible:text-teal-300"
                   >
-                    <span>Github</span>
+                    <span>Link de la app</span>
                     <FiExternalLink className="ml-2 text-base" />
                   </a>
                 )}
@@ -77,6 +92,7 @@ export default function Projects() {
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
                 </div>
             </div>
+            </a>
           </li>
         ))}
       </ol>
