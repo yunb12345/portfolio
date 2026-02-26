@@ -16,7 +16,7 @@ const projects = [
       "Aplicacion web de chat en tiempo real con sistema de autenticación y capaz de subir imagenes",
     tags: ["React","Node","WebSocket","MongoDB","Tailwind"],
     github:"https://github.com/yunb12345/chatifyapp.git",
-    link:"https://profound-spontaneity-production-e505.up.railway.app/",
+    link:"https://chatifyapp-1-h5sb.onrender.com",
   },
   {
     img: "/img/facturalo.png",
